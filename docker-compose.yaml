@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: potekgas-service
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env.docker
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+    networks:
+      - potekgas-net
+
+networks:
+  potekgas-net:
+    external: true
